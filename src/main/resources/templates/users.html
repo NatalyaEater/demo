@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+</head>
+<body>
+<h1>Users</h1>
+<h2>View users</h2>
+
+<table>
+  <colgroup>
+    <col span="1" style="background:Khaki"><!-- С помощью этой конструкции задаем цвет фона для первого столбца таблицы-->
+    <col span="3" style="background-color:LightCyan"><!-- Задаем цвет фона для следующих (3) столбцов таблицы-->
+  </colgroup>
+  <tr>
+    <th>ID </th>
+    <th>    NAME       </th>
+    <th>    AGE   </th>
+    <th> MAIL</th>
+  </tr>
+  <tr th:each="u: ${users}" >
+    <td th:text="${u.id}"></td>
+    <td><a th:href="@{/users/{name}(name=${u.name})}" th:text="${u.name}"></a></td>
+    <td th:text="${u.age}"></td>
+    <td th:text="${u.mail}"></td>
+  </tr>
+</table>
+
+<h2>Add a user</h2>
+<form action="/users" method="post">
+  Name: <input type="text" name="name"><br />
+  Age: <input type="number" step="any" name="age"><br />
+  Mail: <input type="text" name="mail"><br />
+  <button type="submit">Add user</button>
+</form>
+<img src="https://i.postimg.cc/26zrhhQN/0261dfae0e4904627653a2d6d5de1a4e.jpg">
+</body>
+</html>
